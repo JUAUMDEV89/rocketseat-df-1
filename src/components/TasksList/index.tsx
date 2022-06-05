@@ -8,8 +8,21 @@ export function TasksList(){
 
    const { setTasks, tasks } = useTasks();
 
-   function handleDeleteTask(taskId: number){
-      
+   function handleDeleteTask(idTask: number){
+    const newTasksArray = tasks.filter(task => task.id !== idTask);
+    console.log(newTasksArray)
+    setTasks(newTasksArray);
+   }
+
+   function handleUptadeTask(taskId: number){
+     const uptatedTask = [...tasks];
+
+     const taskExist = uptatedTask.find(task => task.id === taskId); 
+
+     if(taskExist){
+       console.log(taskExist)
+     }
+
    }
 
     return(
@@ -18,7 +31,7 @@ export function TasksList(){
           tasks.map(task=>(
             <div key={task.id} className="task">
             <div>
-              <input type="checkbox" name="checkbox" />
+              <input type="checkbox" name="checkbox" onChange={console.log('kkk')} />
             </div>
             <p className="description">{task.title}</p>
             <FiTrash2 onClick={()=>handleDeleteTask(task.id)} color="gray" style={{ cursor: 'pointer' }} />

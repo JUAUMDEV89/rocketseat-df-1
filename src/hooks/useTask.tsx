@@ -1,10 +1,8 @@
 import { createContext, ReactNode, useContext, useState} from 'react';
 
-type T = any;
-
 type TypeTaskContext = {
     tasks: TypeTasks[];
-    setTasks: React.Dispatch<React.SetStateAction<Array<T>[]>>
+    setTasks: (tasks: any)=>void;
 }
 
 type TypeTasks = {
@@ -21,11 +19,7 @@ export const TaskContext = createContext({} as TypeTaskContext);
 
 export function TaskProvider({ children }: TypeTasksProvider){
 
-  const [ tasks, setTasks ] = useState([{
-    id: 1,
-    title: 'dwjiu0wquqdfuwe9rfweufuerf',
-    completed: false
-}]);
+  const [ tasks, setTasks ] = useState<TypeTasks[]>([]);
 
   return <TaskContext.Provider value={{ tasks, setTasks }}>
       { children }

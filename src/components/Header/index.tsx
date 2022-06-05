@@ -3,21 +3,27 @@ import Logo from '../../assets/Logo.svg';
 
 import { AiFillPlusCircle } from "react-icons/ai";
 
+import { useTasks } from '../../hooks/useTask'
+
 import './style.scss';
 
 export function Header(){
 
+    const { tasks, setTasks } = useTasks();
     const [valueTask, setValueTask] = useState('');
 
     async function handleCreateTask(e: FormEvent){
        e.preventDefault();
 
        const tasksObject = {
+           id: Math.floor(Math.random() * 3000),
            title: valueTask,
            completed: false
        }
+       
+       setTasks([...tasks, tasksObject]);
 
-
+       setValueTask('');
     }
 
     return(
