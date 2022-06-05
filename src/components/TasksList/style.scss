@@ -22,5 +22,10 @@
             width: 38rem;
         }
 
+        .taskcompleted{
+            text-decoration: line-through;
+            color: var(--gray-300);
+        }
+
     }
 }

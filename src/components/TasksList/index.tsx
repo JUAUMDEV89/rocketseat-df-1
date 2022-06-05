@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import './style.scss';
 
 import { FiTrash2 } from "react-icons/fi";
@@ -8,6 +9,8 @@ export function TasksList(){
 
    const { setTasks, tasks } = useTasks();
 
+   const [isCompleted, setIsCompleted] = useState(false);
+
    function handleDeleteTask(idTask: number){
     const newTasksArray = tasks.filter(task => task.id !== idTask);
     console.log(newTasksArray)
@@ -15,14 +18,12 @@ export function TasksList(){
    }
 
    function handleUptadeTask(taskId: number){
-     const uptatedTask = [...tasks];
 
-     const taskExist = uptatedTask.find(task => task.id === taskId); 
+     const task = tasks.filter(task => task.id == taskId);
 
-     if(taskExist){
-       console.log(taskExist)
-     }
+     task.map(task => task.completed = true);
 
+     localStorage.setItem('@Juaumdev89:tasks', JSON.stringify(tasks));
    }
 
     return(
@@ -31,9 +32,9 @@ export function TasksList(){
           tasks.map(task=>(
             <div key={task.id} className="task">
             <div>
-              <input type="checkbox" name="checkbox" onChange={console.log('kkk')} />
+              <input type="checkbox" name="checkbox" onChange={()=>handleUptadeTask(task.id)} />
             </div>
-            <p className="description">{task.title}</p>
+            <p className={task.completed ? 'taskcompleted' : 'description'}>{task.title}</p>
             <FiTrash2 onClick={()=>handleDeleteTask(task.id)} color="gray" style={{ cursor: 'pointer' }} />
         </div>
           ))

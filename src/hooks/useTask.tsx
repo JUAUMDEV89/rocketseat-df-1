@@ -1,4 +1,4 @@
-import { createContext, ReactNode, useContext, useState} from 'react';
+import { createContext, ReactNode, useContext, useEffect, useState} from 'react';
 
 type TypeTaskContext = {
     tasks: TypeTasks[];
@@ -18,6 +18,12 @@ type TypeTasksProvider = {
 export const TaskContext = createContext({} as TypeTaskContext);
 
 export function TaskProvider({ children }: TypeTasksProvider){
+  
+  useEffect(()=>{
+      const storage = localStorage.getItem('@Juaumdev89:tasks')
+
+      console.log(storage)
+  }, []);
 
   const [ tasks, setTasks ] = useState<TypeTasks[]>([]);
 

@@ -13,6 +13,9 @@ function App() {
 
   const { tasks } = useTasks();
 
+  const TasksCompleted = tasks.filter(task => task.completed === true);
+  
+  localStorage.setItem('@Juaumdev89:tasks', JSON.stringify(tasks));
   return (
     <>
      <Header />
@@ -30,7 +33,7 @@ function App() {
              <span>
                Concluidas
              </span>
-             <div>0 de {tasks.length}</div>
+             <div>{TasksCompleted.length} de {tasks.length}</div>
            </div>
          </div>
 

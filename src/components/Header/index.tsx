@@ -24,6 +24,8 @@ export function Header(){
        setTasks([...tasks, tasksObject]);
 
        setValueTask('');
+
+       localStorage.setItem('@Juaumdev89:tasks', JSON.stringify(tasks));
     }
 
     return(
